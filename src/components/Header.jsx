@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { BiCart, BiMenu } from "react-icons/bi";
+import Logo from './Logo';
 
 export default function Header() {
 
@@ -9,8 +10,8 @@ export default function Header() {
                 <MenuContainer>
                     <Acess>
                         <BiMenu />
-                        <p>Login</p>
-                        <p>Cadastro</p>
+                        <p>Logout</p>
+                        <p>Olá, Fulano </p>
                         <p>Home</p>
                     </Acess>
 
@@ -19,9 +20,7 @@ export default function Header() {
                         <BiCart />
                     </Cart>
                 </MenuContainer>
-                <LogoContainer>
-                    <h1>DrivenTech</h1>
-                </LogoContainer>
+               <Logo />
             </HeaderContainer>
 
 
@@ -41,21 +40,6 @@ const MenuContainer = styled.div`
     height: 55px;
     padding: 15px;
     
-`
-const LogoContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 120px;
-    background-color: #255566;
-    h1 {
-        font-family: 'Montserrat';
-        font-size: 30px;
-        font-weight: 600;
-        color: white
-    }
-    
-   
 `
 const Acess = styled.div`
     display: flex;
