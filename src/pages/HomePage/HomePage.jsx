@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Header from '../../components/Header'
+import SideMenu from '../../components/SideMenu'
 import notebook from './../../../assets/notebook.png'
 
 
@@ -10,6 +11,9 @@ export default function HomePage() {
         <>
             <Header />
             <ContainerGeral>
+                <SideMenu>
+                    
+                </SideMenu>
                 <ContainerProd>
 
                     <Product>

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { BiCart, BiMenu } from "react-icons/bi";
 
 export default function Header() {
 
@@ -7,14 +8,15 @@ export default function Header() {
             <HeaderContainer>
                 <MenuContainer>
                     <Acess>
+                        <BiMenu />
                         <p>Login</p>
                         <p>Cadastro</p>
                         <p>Home</p>
                     </Acess>
 
                     <Cart>
-                        <p>icone</p>
-                        <p>Carrinho</p>
+                        <a>Carrinho</a>
+                        <BiCart />
                     </Cart>
                 </MenuContainer>
                 <LogoContainer>
