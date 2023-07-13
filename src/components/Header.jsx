@@ -4,6 +4,8 @@ import Logo from './Logo';
 
 export default function Header() {
 
+    const user = JSON.parse(sessionStorage.getItem("user"));
+
     return (
         <>
             <HeaderContainer>

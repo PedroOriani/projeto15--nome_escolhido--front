@@ -2,10 +2,32 @@ import styled from 'styled-components'
 import Header from '../../components/Header'
 import SideMenu from '../../components/SideMenu'
 import notebook from './../../../assets/notebook.png'
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 
 export default function HomePage() {
 
+    const [products, setProducts] = useState([]);
+
+    const token = JSON.parse(sessionStorage.getItem("token"));
+
+    const navigateTo = useNavigate();
+    
+    // const config = {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    // };
+
+    // function loadProducts(){
+    //     const promise = axios.get(`${import.meta.env.VITE_API_URL}/products`, config);
+    //     promise.then(resposta => setProducts = resposta.data)
+    //     promise.catch((erro) => alert(erro.response.data));
+    //   }
+
+    // useEffect(loadProducts, []);
 
     return (
         <>
