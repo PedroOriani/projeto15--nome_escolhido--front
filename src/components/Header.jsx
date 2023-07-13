@@ -1,11 +1,23 @@
 import styled from 'styled-components'
-import { BiCart, BiMenu } from "react-icons/bi";
-import { Link } from 'react-router-dom';
+import { BiCart, BiLogOut, BiLogOutCircle, BiMenu } from "react-icons/bi";
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function Header() {
 
     const user = JSON.parse(sessionStorage.getItem("user"));
+    const navigateTo = useNavigate();
+
+    function efetuarLogout() {
+
+        axios.post(`${import.meta.env.VITE_API_URL}/logout`)
+            .then(() => {
+                sessionStorage.clear()
+                navigateTo("/log-in")
+            })
+            .catch((err) => alert(err.response.data));
+    }
 
 
     return (
@@ -16,7 +28,7 @@ export default function Header() {
                         <BiMenu />
                         <p>Faça <Link to={'/log-in'}><span>LOGIN </span></Link>ou <br />
                             crie seu <Link to={'/register'}><span>CADASTRO</span></Link></p>
-
+                        <BiLogOutCircle onClick={efetuarLogout} />
                     </Acess>
                     <h1>DrivenTech</h1>
                     <Cart>
@@ -25,9 +37,7 @@ export default function Header() {
                     </Cart>
 
                 </MenuContainer>
-                <LogoContainer>
 
-                </LogoContainer>
 
             </HeaderContainer>
 
