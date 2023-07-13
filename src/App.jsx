@@ -12,9 +12,9 @@ function App() {
 
       <Routes>
 
-        <Route path='/' element={ <SignIn /> }/>
+        <Route path='/home' element={ <SignIn /> }/>
         <Route path='/register' element={ <SignUp /> }/>
-        <Route path='/home' element={ <HomePage /> }/>
+        <Route path='/' element={ <HomePage /> }/>
         <Route path='cart' element={ <ShoppingCart /> }/>
         <Route path='checkout' element={ <Checkout /> }/>
 
