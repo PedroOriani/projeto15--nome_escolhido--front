@@ -12,7 +12,7 @@ function App() {
 
       <Routes>
 
-        <Route path='/home' element={ <SignIn /> }/>
+        <Route path='/log-in' element={ <SignIn /> }/>
         <Route path='/register' element={ <SignUp /> }/>
         <Route path='/' element={ <HomePage /> }/>
         <Route path='cart' element={ <ShoppingCart /> }/>

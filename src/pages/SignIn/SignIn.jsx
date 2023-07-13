@@ -1,15 +1,31 @@
 import { useState } from "react";
 import Logo from "../../components/Logo";
 import styled from 'styled-components'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function SignIn() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    function loginUser() {
+    const navigateTo = useNavigate();
 
+    function loginUser(e) {
+        e.preventDefault();
+
+        const body = {
+            email,
+            password
+        }
+        
+        const promise = axios.post(`${import.meta.env.VITE_API_URL}/sign-in`, body)
+        promise.then(resposta => {
+            sessionStorage.setItem('token', JSON.stringify(resposta.data.token));
+            sessionStorage.setItem('user', JSON.stringify(resposta.data.user));
+            navigateTo('/')
+        })
+        promise.catch((erro) => alert(erro.response.data))
     }
     return (
         <>
@@ -45,7 +61,7 @@ export default function SignIn() {
 
 
 const FormContainer = styled.section`
-    height: 100vh;
+    height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,13 +1,17 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Logo from '../../components/Logo'
+import axios from 'axios'
 
 export default function SignUp() {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+
+    const navigateTo = useNavigate();
 
     function registerUser(e) {
         e.preventDefault()
@@ -16,7 +20,12 @@ export default function SignUp() {
             email,
             password
         }
-        console.log(body)
+        
+        const promise = axios.post(`${import.meta.env.VITE_API_URL}/sign-up`, body)
+        promise.then(resposta => {
+            navigateTo('/log-in')
+        })
+        promise.catch((erro) => alert(erro.response.data))
     }
 
     return (
@@ -48,6 +57,14 @@ export default function SignUp() {
                         onChange={e => setPassword(e.target.value)}
                         required
                     />
+                    <input
+                        name="confirmPassword"
+                        placeholder="Confirme sua Senha"
+                        type="password"
+                        value={confirmPassword}
+                        onChange={e => setConfirmPassword(e.target.value)}
+                        required
+                    />
                     <button type='submit'>Cadastrar</button>
                 </form>
                 <Link to={'/'}>
@@ -61,7 +78,7 @@ export default function SignUp() {
 
 
 const FormContainer = styled.section`
-    height: 100vh;
+    height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
     justify-content: center;

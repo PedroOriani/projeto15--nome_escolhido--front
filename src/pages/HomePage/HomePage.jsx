@@ -94,14 +94,14 @@ const ContainerProd = styled.div`
     display: flex;
     flex-wrap: wrap;
     padding: 30px;
-    width: 900px;
+    width: 1000px;
 `
 const Product = styled.div`
     display: flex;
     flex-direction: column;
     width: 200px;
     height: 300px;
-    margin: 5px;
+    margin: 15px;
    
     padding: 10px;
 
