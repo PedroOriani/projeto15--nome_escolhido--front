@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import Logo from '../../components/Logo'
 import axios from 'axios'
+import Header from '../../components/Header'
 
 export default function SignUp() {
 
@@ -30,7 +30,7 @@ export default function SignUp() {
 
     return (
         <>
-            <Logo />
+            <Header />
             <FormContainer>
                 <form onSubmit={registerUser}>
                     <input
@@ -67,7 +67,7 @@ export default function SignUp() {
                     />
                     <button type='submit'>Cadastrar</button>
                 </form>
-                <Link to={'/'}>
+                <Link to={'/log-in'}>
                     <p>Já tem uma conta? Acesse aqui!</p>
                 </Link>
 

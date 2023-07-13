@@ -1,10 +1,12 @@
 import styled from 'styled-components'
 import { BiCart, BiMenu } from "react-icons/bi";
-import Logo from './Logo';
+import { Link } from 'react-router-dom';
+
 
 export default function Header() {
 
     const user = JSON.parse(sessionStorage.getItem("user"));
+
 
     return (
         <>
@@ -12,17 +14,21 @@ export default function Header() {
                 <MenuContainer>
                     <Acess>
                         <BiMenu />
-                        <p>Logout</p>
-                        <p>Olá, Fulano </p>
-                        <p>Home</p>
-                    </Acess>
+                        <p>Faça <Link to={'/log-in'}><span>LOGIN </span></Link>ou <br />
+                            crie seu <Link to={'/register'}><span>CADASTRO</span></Link></p>
 
+                    </Acess>
+                    <h1>DrivenTech</h1>
                     <Cart>
-                        <a>Carrinho</a>
                         <BiCart />
+                        <a>Carrinho</a>
                     </Cart>
+
                 </MenuContainer>
-               <Logo />
+                <LogoContainer>
+
+                </LogoContainer>
+
             </HeaderContainer>
 
 
@@ -41,22 +47,51 @@ const MenuContainer = styled.div`
     align-items: center;
     height: 55px;
     padding: 15px;
+    height: 120px;
+    background-color: #255566;
+    h1 {
+        font-family: 'Montserrat';
+        font-size: 30px;
+        font-weight: 600;
+        color: white
+    }
     
 `
 const Acess = styled.div`
     display: flex;
     p {
-        font-family: 'Roboto';
+        font-family: 'Montserrat';
         font-weight: 400;
         margin-right: 10px;
+        color: white;
+    }
+    span {
+        font-family: 'Montserrat';
+        font-weight: 700;
+        font-size: 15px;
+    }
+    a {
+        text-decoration: none;
+        color: white;
     }
 `
 const Cart = styled.div`
     display: flex;
+    flex-direction: column;
     
-    p {
-        font-family: 'Roboto';
+    a {
+        font-family: 'Montserrat';
         font-weight: 400;
         margin-left: 10px;
+        color: white;
     }
+   
+`
+
+const LogoContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+   
 `

@@ -111,6 +111,7 @@ export default function HomePage() {
 const ContainerGeral = styled.div`
     display: flex;
     justify-content: center;
+
 `
 const ContainerProd = styled.div`
     display: flex;
