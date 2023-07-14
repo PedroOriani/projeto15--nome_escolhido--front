@@ -3,111 +3,49 @@ import styled from 'styled-components';
 import { BiChevronDown } from "react-icons/bi";
 
 export default function SideMenu() {
-  const [brand, setBrand] = useState('');
-  const [processor, setProcessor] = useState('');
-  const [ram, setRam] = useState('');
-  const [storage, setStorage] = useState('');
+  const [category, setCategory] = useState('');
+  const [filter, setFilter] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
-  function test() {
-    console.log(brand);
-    console.log(processor);
-    console.log(ram);
+  /*
+  function getProductsByCategory(productCategory) {
+    setCategory(productCategory);
+    const authentication = { headers: { Authorization: `Bearer ${token}`, }, };
+    const req = axios.get(`${import.meta.env.VITE_API_URL}/home`, category, authentication);
+    req.then(res => {
+      
+    });
+    req.catch(err => alert(err.response.data));
+  } 
+
+  function filterProducts(filterType) {
+    setFilter(filterType);
+    const authentication = { headers: { Authorization: `Bearer ${token}`, }, };
+    const req = axios.get(`${import.meta.env.VITE_API_URL}/home`, filter, authentication);
+    req.then(res => {
+
+    });
+    req.catch(err => alert(err.response.data));
   }
-  
+  */
+ 
   return (
     <>
       <SideMenuLeft>
-            <h1>Filtrar por:</h1>
-            <br />
-            <fieldset>
-              <legend>Marca:</legend>
-              <label for="dell">
-                <input type="radio" name="brand" onChange={() => setBrand('dell')}/>
-                DELL
-              </label>
-              <br />
-              <label for="asus">
-                <input type="radio" name="brand" onChange={() => setBrand('asus')}/>
-                Asus
-              </label>
-              <br />
-              <label for="lenovo">
-                <input type="radio" name="brand" onChange={() => setBrand('lenovo')}/>
-                Lenovo
-              </label>
-              <br />
-              <label for="acer">
-                <input type="radio" name="brand" onChange={() => setBrand('acer')}/>
-                Acer
-              </label>
-            </fieldset>
-            <br />
-            <fieldset>
-              <legend>Processador:</legend>
-              <label for="i3">
-                <input type="radio" name="processor" onChange={() => setProcessor('i3')}/>
-                Intel Core i3
-              </label>
-              <br />
-              <label for="i5">
-                <input type="radio" name="processor" onChange={() => setProcessor('i5')}/>
-                Intel Core i5
-              </label>
-              <br />
-              <label for="i7">
-                <input type="radio" name="processor" onChange={() => setProcessor('i7')}/>
-                Intel Core i7
-              </label>
-              <br />
-            </fieldset>
-            <br />
-            <fieldset>
-              <legend>Memória RAM:</legend>
-              <label for="4">
-                <input type="radio" name="ram" onChange={() => setRam('4')}/>
-                4GB
-              </label>
-              <br />
-              <label for="8">
-                <input type="radio" name="ram" onChange={() => setRam('8')}/>
-                8GB
-              </label>
-              <br />
-              <label for="16">
-                <input type="radio" name="ram" onChange={() => setRam('16')}/>
-                16GB
-              </label>
-              <br />
-            </fieldset>
-            <br />
-            <fieldset>
-              <legend>Armazenamento:</legend>
-              <label for="250">
-                <input type="radio" name="storage" onChange={() => setStorage('250')}/>
-                250GB
-              </label>
-              <br />
-              <label for="500">
-                <input type="radio" name="storage" onChange={() => setStorage('500')}/>
-                500GB
-              </label>
-              <br />
-              <label for="1000">
-                <input type="radio" name="storage" onChange={() => setStorage('1000')}/>
-                1TB
-              </label>
-            </fieldset>
-            <br />
-            <button onClick={test}>Filtrar</button>
+        <div>Categorias: </div>
+        <button onClick={() => getProductsByCategory("cellphone")}>Celulares</button>
+        <button onClick={() => getProductsByCategory("laptop")}>Notebooks</button>
+        <button onClick={() => getProductsByCategory("tablet")}>Tablets</button>
+        <button onClick={() => getProductsByCategory("speaker")}>Caixas de som</button>
+        <button onClick={() => getProductsByCategory("earphone")}>Fones de ouvido</button>
       </SideMenuLeft>
       <SideMenuRight>
         <button onClick={() => setIsOpen(!isOpen)}>Ordenar por <BiChevronDown/> </button>
         {isOpen &&
         <FilterProducts>
-          <li>Preço: maior - menor</li>
-          <li>Preço: menor - maior</li>
-          <li>Mais vendidos</li>
+          <li onClick={() => filterProducts("maior")}>Preço: maior - menor</li>
+          <li onClick={() => filterProducts("menor")}>Preço: menor - maior</li>
+          <li onClick={() => filterProducts("vendas")}>Mais vendidos</li>
         </FilterProducts>
         }
       </SideMenuRight>
@@ -119,6 +57,7 @@ const SideMenuLeft = styled.aside`
   position: absolute;
   display: flex;
   flex-direction: column;
+  row-gap: 1px;
   z-index: 2;
   left: 0;
   margin-top: 20px;
@@ -126,19 +65,23 @@ const SideMenuLeft = styled.aside`
   width: 200px;
   min-height: 100vh;
   font-family: 'Roboto';
-  h1 {
-    font-size: 20px;
-    font-weight: 600;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: #255566;
+    height: 40px;
+    width: 100%;
   }
   button {
-    background: #255566;
-    color: white;
-    border-radius: 5px;
-    height: 30px;
-    width: 100px;
+    font-family: 'Roboto';
+    cursor: pointer;
+    height: 40px;
+    width: 100%;
     border: none;
   }
-  @media (max-width: 1025px) {
+  @media (max-width: 1200px) {
     visibility: hidden;
   }
 `
@@ -146,20 +89,20 @@ const SideMenuRight = styled.aside`
   position: absolute;
   display: flex;
   margin-top: 20px;
-  width: 150px;
+  width: 200px;
   right: 0;
   button {
+    font-size: 18px;
     cursor: pointer;
     background: #255566;
     color: white;
     height: 35px;
-    width: 100px;
-    border-radius: 5px;
+    width: 130px;
     display: flex;
     align-items: center;
     border: none;
   }
-  @media (max-width: 1025px) {
+  @media (max-width: 1200px) {
     visibility: hidden;
   }
 `
@@ -175,6 +118,7 @@ const FilterProducts = styled.div`
   padding: 5px;
   font-family: 'Roboto';
   li {
+    font-size: 16px;
     list-style: none;
   }
 `

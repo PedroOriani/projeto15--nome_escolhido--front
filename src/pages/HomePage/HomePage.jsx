@@ -34,7 +34,7 @@ export default function HomePage() {
             <Header />
             <ContainerGeral>
                 <SideMenu>
-                    
+
                 </SideMenu>
                 <ContainerProd>
 
