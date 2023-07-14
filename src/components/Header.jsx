@@ -6,6 +6,8 @@ import axios from 'axios';
 
 export default function Header() {
 
+    const token = JSON.parse(sessionStorage.getItem("token"));
+
     const user = JSON.parse(sessionStorage.getItem("user"));
     const navigateTo = useNavigate();
 
@@ -13,10 +15,14 @@ export default function Header() {
 
         axios.post(`${import.meta.env.VITE_API_URL}/logout`)
             .then(() => {
-                sessionStorage.clear()
-                navigateTo("/log-in")
+                sessionStorage.clear();
+                navigateTo("/log-in");
             })
             .catch((err) => alert(err.response.data));
+    }
+
+    function shoppingCart(){
+        navigateTo('/shoppingCart');
     }
 
 
@@ -25,14 +31,14 @@ export default function Header() {
             <HeaderContainer>
                 <MenuContainer>
                     <Acess>
-                        <BiMenu />
+                        <MenuIcon />
                         <p>Faça <Link to={'/log-in'}><span>LOGIN </span></Link>ou <br />
                             crie seu <Link to={'/register'}><span>CADASTRO</span></Link></p>
-                        <BiLogOutCircle onClick={efetuarLogout} />
+                        <SCLogOutIcon onClick={efetuarLogout} logged={token}/>
                     </Acess>
-                    <h1>DrivenTech</h1>
+                    <SCTitle>DrivenTech</SCTitle>
                     <Cart>
-                        <BiCart />
+                        <CartIcon onClick={shoppingCart}/>
                         <a>Carrinho</a>
                     </Cart>
 
@@ -69,10 +75,12 @@ const MenuContainer = styled.div`
 `
 const Acess = styled.div`
     display: flex;
+    align-items: center;
     p {
         font-family: 'Montserrat';
         font-weight: 400;
         margin-right: 10px;
+        margin-left: 10px;
         color: white;
     }
     span {
@@ -87,21 +95,48 @@ const Acess = styled.div`
 `
 const Cart = styled.div`
     display: flex;
-    flex-direction: column;
+    align-items: center;
     
     a {
         font-family: 'Montserrat';
         font-weight: 400;
         margin-left: 10px;
         color: white;
+        font-size: 20px;
     }
    
+`
+
+const SCTitle = styled.p`
+    font-size: 50px;
+    font-weight: 600;
+    font-family: 'Montserrat';
+
+    color: #ffffff;
+    
+    margin-right: 100px;
 `
 
 const LogoContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    
-   
+`
+
+const MenuIcon = styled(BiMenu)`
+    color: #ffffff;
+
+    width: 30px;
+    height: 30px;
+`
+
+const CartIcon = styled(BiCart)`
+    color: #ffffff;
+
+    width: 30px;
+    height: 30px;
+`
+
+const SCLogOutIcon = styled(BiLogOutCircle)`
+    display: ${(props) => (props.token ? 'block' : 'none')}
 `
