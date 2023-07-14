@@ -2,9 +2,7 @@ import { useState } from "react";
 import styled from 'styled-components'
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Header from "../../components/Header";
-import PathContext from "../../context/pathContext";
-import { useContext } from "react";
+import Header from "../../components/Header"
 
 export default function SignIn() {
 

@@ -4,18 +4,33 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useContext } from 'react';
 import PathContext from '../context/pathContext';
+import { BiPlusCircle } from "react-icons/bi"
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Header() {
 
     const { path } = useContext(PathContext)
 
     const token = JSON.parse(sessionStorage.getItem("token"));
-
     const user = JSON.parse(sessionStorage.getItem("user"));
+
+    //TESTANDO OS EMAILS JA QUE NAO CONSEGUIMOS FAZER O USER.EMAIL AINDA
+    //const email = user.email
+    const email = 'admin@admin.com'
+    //const email = 'email@email.com'
 
     const navigateTo = useNavigate();
 
-    console.log(path)
+    const [emailADM, setEmailADM] = useState(0);
+
+    function verifyAdm(){
+        if (email === 'admin@admin.com'){
+            setEmailADM(1)
+        }
+    }
+
+    useEffect(verifyAdm, []);
 
     function efetuarLogout() {
 
@@ -39,6 +54,10 @@ export default function Header() {
         }
     }
 
+    function addProduct(){
+
+    }
+
     return (
         <>
             <HeaderContainer>
@@ -54,6 +73,10 @@ export default function Header() {
                         <CartIcon path={path === 'cart'} />
                         <a>{path === 'home' ? 'Carrinho' : 'Voltar às compras'}</a>
                     </Cart>
+                    <SCAddProduct onClick={addProduct} emailADM={emailADM === 1}>
+                        <SCBiPlusCircle />
+                        <p>Adicionar Produto</p>
+                    </SCAddProduct>
                 </MenuContainer>
             </HeaderContainer>
         </>
@@ -154,4 +177,31 @@ const CartIcon = styled(BiCart)`
 
 const SCLogOutIcon = styled(BiLogOutCircle)`
     display: ${(props) => (props.token ? 'block' : 'none')}
+`
+
+const SCAddProduct = styled.div`
+    position: fixed;
+    right: calc(20%);
+
+    display: ${props => props.emailADM ? 'flex' : 'none'};
+    flex-direction: column;
+    align-items: center;
+
+    border: 1px solid #ffffff;
+    padding: 5px;
+    border-radius: 14px;
+
+    p{
+        margin-top: 5px;
+        font-size: 25px;
+        font-family: 'Montserrat';
+        color: #ffffff;
+    }
+`
+
+const SCBiPlusCircle = styled(BiPlusCircle)`
+    color: #ffffff;
+
+    width: 30px;
+    height: 30px;
 `

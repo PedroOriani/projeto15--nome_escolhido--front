@@ -3,8 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
 import Header from '../../components/Header'
-import PathContext from '../../context/pathContext'
-import { useContext } from 'react'
 
 export default function SignUp() {
 
