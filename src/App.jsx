@@ -4,23 +4,31 @@ import SignUp from './pages/SignUp/SignUp'
 import HomePage from './pages/HomePage/HomePage'
 import ShoppingCart from './pages/ShoppingCart/ShoppingCart'
 import Checkout from './pages/Checkout/Checkout'
+import { useState } from "react"
+import PathContext from "./context/pathContext.jsx"
 
 function App() {
 
+  const [path, setPath] = useState('');
+
   return (
-    <BrowserRouter>
+    <PathContext.Provider value={{ path, setPath }}>
 
-      <Routes>
+      <BrowserRouter>
 
-        <Route path='/log-in' element={ <SignIn /> }/>
-        <Route path='/register' element={ <SignUp /> }/>
-        <Route path='/' element={ <HomePage /> }/>
-        <Route path='cart' element={ <ShoppingCart /> }/>
-        <Route path='checkout' element={ <Checkout /> }/>
+        <Routes>
 
-      </Routes>
-      
-    </BrowserRouter>
+          <Route path='/log-in' element={<SignIn />} />
+          <Route path='/register' element={<SignUp />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='cart' element={<ShoppingCart />} />
+          <Route path='checkout' element={<Checkout />} />
+
+        </Routes>
+
+      </BrowserRouter>
+
+    </PathContext.Provider>
   )
 }
 

@@ -5,15 +5,21 @@ import notebook from './../../../assets/notebook.png'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useContext } from 'react';
+import PathContext from '../../context/pathContext';
 
 
 export default function HomePage() {
+
+    const { setPath } = useContext(PathContext)
 
     const [products, setProducts] = useState([]);
 
     const token = JSON.parse(sessionStorage.getItem("token"));
 
     const navigateTo = useNavigate();
+
+    setPath('home')
     
     // const config = {
     //     headers: {

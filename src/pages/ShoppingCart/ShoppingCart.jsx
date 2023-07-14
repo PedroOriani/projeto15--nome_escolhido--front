@@ -2,8 +2,17 @@ import styled from 'styled-components'
 import Header from '../../components/Header'
 import notebook from './../../../assets/notebook.png'
 import { useEffect } from 'react';
+import { useContext } from 'react';
+import PathContext from '../../context/pathContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function ShoppingCart(){
+
+  const { setPath } = useContext(PathContext)
+
+  const navigateTo = useNavigate();
+
+  setPath('cart')
 
     /*
     useEffect(() => {
@@ -12,6 +21,10 @@ export default function ShoppingCart(){
         }
       }, []);
       */
+  
+  function checkout(){
+    navigateTo('/checkout')
+  }
 
     return(
         <>
@@ -31,7 +44,7 @@ export default function ShoppingCart(){
           </ShoppingCartContainer>
           <Subtotal>
             <h1>Subtotal: <strong>R$10,00</strong></h1>
-            <button>Finalizar pedido</button>
+            <button onClick={checkout}>Finalizar pedido</button>
           </Subtotal>
         </PageContainer>
         </>

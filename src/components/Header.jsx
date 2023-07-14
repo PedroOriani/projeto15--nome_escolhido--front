@@ -1,14 +1,21 @@
 import styled from 'styled-components'
 import { BiCart, BiLogOut, BiLogOutCircle, BiMenu } from "react-icons/bi";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useContext } from 'react';
+import PathContext from '../context/pathContext';
 
 export default function Header() {
+
+    const { path } = useContext(PathContext)
 
     const token = JSON.parse(sessionStorage.getItem("token"));
 
     const user = JSON.parse(sessionStorage.getItem("user"));
+
     const navigateTo = useNavigate();
+
+    console.log(path)
 
     function efetuarLogout() {
 
@@ -20,10 +27,17 @@ export default function Header() {
             .catch((err) => alert(err.response.data));
     }
 
-    function shoppingCart(){
-        navigateTo('/shoppingCart');
+    function goHome(){
+        navigateTo('/')
     }
 
+    function changePage(){
+        if(path === 'cart'){
+            navigateTo('/')
+        }else{
+            navigateTo('/cart');
+        }
+    }
 
     return (
         <>
@@ -33,20 +47,15 @@ export default function Header() {
                         <MenuIcon />
                         <p>Faça <Link to={'/log-in'}><span>LOGIN </span></Link>ou <br />
                             crie seu <Link to={'/register'}><span>CADASTRO</span></Link></p>
-                        <SCLogOutIcon onClick={efetuarLogout} logged={token}/>
+                        <SCLogOutIcon onClick={efetuarLogout} logged={token} />
                     </Acess>
-                    <SCTitle>DrivenTech</SCTitle>
-                    <Cart>
-                        <CartIcon onClick={shoppingCart}/>
-                        <a>Carrinho</a>
+                    <SCTitle onClick={goHome}>DrivenTech</SCTitle>
+                    <Cart onClick={changePage} >
+                        <CartIcon path={path === 'cart'} />
+                        <a>{path === 'home' ? 'Carrinho' : 'Voltar às compras'}</a>
                     </Cart>
-
                 </MenuContainer>
-
-
             </HeaderContainer>
-
-
         </>
     )
 }
@@ -79,7 +88,7 @@ const Acess = styled.div`
         font-family: 'Montserrat';
         font-weight: 400;
         margin-right: 10px;
-        margin-left: 10px;
+        margin-left: 20px;
         color: white;
     }
     span {
@@ -95,6 +104,10 @@ const Acess = styled.div`
 const Cart = styled.div`
     display: flex;
     align-items: center;
+
+    cursor: pointer;
+
+    margin-right: 20px;
     
     a {
         font-family: 'Montserrat';
@@ -103,7 +116,6 @@ const Cart = styled.div`
         color: white;
         font-size: 20px;
     }
-   
 `
 
 const SCTitle = styled.p`
@@ -114,6 +126,8 @@ const SCTitle = styled.p`
     color: #ffffff;
     
     margin-right: 100px;
+
+    cursor: pointer;
 `
 
 const LogoContainer = styled.div`
@@ -134,6 +148,8 @@ const CartIcon = styled(BiCart)`
 
     width: 30px;
     height: 30px;
+
+    display: ${(props) => (props.path ? 'none' : 'block')}
 `
 
 const SCLogOutIcon = styled(BiLogOutCircle)`

@@ -36,7 +36,7 @@ export default function SideMenu() {
   return (
     <>
       <SideMenuLeft>
-        <div>Categorias: </div>
+        <div>Filtrar por Categorias: </div>
         <button onClick={() => getProductsByCategory("cellphone")}>Celulares</button>
         <button onClick={() => getProductsByCategory("laptop")}>Notebooks</button>
         <button onClick={() => getProductsByCategory("tablet")}>Tablets</button>
