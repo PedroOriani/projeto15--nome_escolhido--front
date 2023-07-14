@@ -7,27 +7,31 @@ export default function SideMenu() {
   const [filter, setFilter] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
-  /*
+  
   function getProductsByCategory(productCategory) {
     setCategory(productCategory);
+    /*
     const authentication = { headers: { Authorization: `Bearer ${token}`, }, };
     const req = axios.get(`${import.meta.env.VITE_API_URL}/home`, category, authentication);
     req.then(res => {
       
     });
     req.catch(err => alert(err.response.data));
+    */
   } 
 
   function filterProducts(filterType) {
     setFilter(filterType);
+    /*
     const authentication = { headers: { Authorization: `Bearer ${token}`, }, };
     const req = axios.get(`${import.meta.env.VITE_API_URL}/home`, filter, authentication);
     req.then(res => {
 
     });
     req.catch(err => alert(err.response.data));
+    */
   }
-  */
+  
  
   return (
     <>

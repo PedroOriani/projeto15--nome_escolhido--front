@@ -3,7 +3,6 @@ import { BiCart, BiLogOut, BiLogOutCircle, BiMenu } from "react-icons/bi";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
 export default function Header() {
 
     const token = JSON.parse(sessionStorage.getItem("token"));

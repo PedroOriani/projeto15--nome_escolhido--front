@@ -111,6 +111,7 @@ export default function HomePage() {
 const ContainerGeral = styled.div`
     display: flex;
     justify-content: center;
+    margin-left: 50px;
 
 `
 const ContainerProd = styled.div`
