@@ -3,7 +3,7 @@ import Header from '../../components/Header'
 import notebook from './../../../assets/notebook.png'
 import { useEffect } from 'react';
 import { useContext } from 'react';
-import PathContext from '../../context/pathContext';
+import PathContext from '../../context/PathContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function ShoppingCart(){

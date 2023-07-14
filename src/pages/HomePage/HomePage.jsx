@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
-import PathContext from '../../context/pathContext';
+import PathContext from '../../context/PathContext';
 
 
 export default function HomePage() {

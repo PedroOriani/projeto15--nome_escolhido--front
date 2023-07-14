@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import PathContext from "../../context/pathContext"
+import PathContext from "../../context/PathContext"
 
 export default function Checkout(){
 

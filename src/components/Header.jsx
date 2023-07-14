@@ -3,7 +3,7 @@ import { BiCart, BiLogOut, BiLogOutCircle, BiMenu } from "react-icons/bi";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useContext } from 'react';
-import PathContext from '../context/pathContext';
+import PathContext from '../context/PathContext';
 import { BiPlusCircle } from "react-icons/bi"
 import { useEffect } from 'react';
 import { useState } from 'react';

@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage/HomePage'
 import ShoppingCart from './pages/ShoppingCart/ShoppingCart'
 import Checkout from './pages/Checkout/Checkout'
 import { useState } from "react"
-import PathContext from "./context/pathContext.jsx"
+import PathContext from "./context/PathContext.jsx"
 
 function App() {
 
