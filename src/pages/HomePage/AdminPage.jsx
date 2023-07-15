@@ -1,50 +1,54 @@
-import Header from '../../components/Header'
-import SideMenu from '../../components/SideMenu'
+import axios from 'axios';
 import notebook from './../../../assets/notebook.png'
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useContext } from 'react';
-import PathContext from '../../context/PathContext';
 import { HeaderContainer, MenuContainer, Acess, SCLogOutIcon, SCTitle, Cart, CartIcon, ContainerGeral, ContainerProd, SCAddProduct, SCBiPlusCircle, Product, Valor, AddtoCart } from './styleHome'
+import { useNavigate } from 'react-router-dom';
 
 
+export default function Admin() {
 
-export default function HomePage() {
-
-    const { setPath } = useContext(PathContext)
-
-    const [products, setProducts] = useState([]);
-
-    const token = JSON.parse(sessionStorage.getItem("token"));
 
     const navigateTo = useNavigate();
 
-    setPath('home')
-    
-    // const config = {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    // };
+    function addProduct() {
 
-    // function loadProducts(){
-    //     const promise = axios.get(`${import.meta.env.VITE_API_URL}/products`, config);
-    //     promise.then(resposta => setProducts = resposta.data)
-    //     promise.catch((erro) => alert(erro.response.data));
-    //   }
+    }
 
-    // useEffect(loadProducts, []);
+    function efetuarLogout() {
+
+         axios.post(`${import.meta.env.VITE_API_URL}/logout`)
+             .then(() => {
+                 sessionStorage.clear();
+                 navigateTo("/log-in");
+               
+             })
+             .catch(err => console.log(err.response.data));
+    }
 
     return (
         <>
-            <Header />
+            <HeaderContainer>
+                <MenuContainer>
+                    <Acess>
+                        <SCLogOutIcon onClick={efetuarLogout} />
+                        <p><span>Admin User </span></p>
+
+                    </Acess>
+                    <SCTitle >DrivenTech</SCTitle>
+                    <Cart  >
+                        <CartIcon />
+
+                    </Cart>
+
+                </MenuContainer>
+            </HeaderContainer>
+
             <ContainerGeral>
-                <SideMenu>
 
-                </SideMenu>
                 <ContainerProd>
-
+                    <SCAddProduct onClick={addProduct} >
+                        <SCBiPlusCircle />
+                        <p>Adicionar Produto</p>
+                    </SCAddProduct>
                     <Product>
                         <img src={notebook} alt='' />
                         <h1>Notebook Inspiron 15 3000</h1>
@@ -111,7 +115,6 @@ export default function HomePage() {
 
                 </ContainerProd>
             </ContainerGeral>
-
         </>
     )
 }

@@ -6,6 +6,7 @@ import ShoppingCart from './pages/ShoppingCart/ShoppingCart'
 import Checkout from './pages/Checkout/Checkout'
 import { useState } from "react"
 import PathContext from "./context/PathContext.jsx"
+import AdminPage from './pages/HomePage/AdminPage'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/log-in' element={<SignIn />} />
           <Route path='/register' element={<SignUp />} />
           <Route path='/' element={<HomePage />} />
+          <Route path='/admin' element={<AdminPage />} />
           <Route path='cart' element={<ShoppingCart />} />
           <Route path='checkout' element={<Checkout />} />
 

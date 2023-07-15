@@ -23,7 +23,12 @@ export default function SignIn() {
         promise.then(resposta => {
             sessionStorage.setItem('token', JSON.stringify(resposta.data.token));
             sessionStorage.setItem('user', JSON.stringify(resposta.data.user));
-            navigateTo('/')
+            if(email === 'admin@admin.com') {
+                navigateTo('/admin')
+            } else {
+                navigateTo('/')
+            }          
+            
         })
         promise.catch((erro) => alert(erro.response.data))
     }
