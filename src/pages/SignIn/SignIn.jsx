@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from 'styled-components'
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "../../components/Header"
+import { UserLogged } from "../../context/UserLogged";
+
 
 export default function SignIn() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const {setLogged} = useContext(UserLogged)
 
     const navigateTo = useNavigate();
 
@@ -27,6 +30,7 @@ export default function SignIn() {
                 navigateTo('/admin')
             } else {
                 navigateTo('/')
+                setLogged(true)
             }          
             
         })

@@ -25,7 +25,7 @@ export const MenuContainer = styled.div`
 `
  
 export const Acess = styled.div`
-    display: flex;
+    display: ${(props) => props.logged ? "none" : "flex"};
     align-items: center;
     p {
         font-family: 'Montserrat';
@@ -44,6 +44,27 @@ export const Acess = styled.div`
         color: white;
     }
 `
+export const AcessUser = styled.div`
+    display: ${(props) => props.logged ? "flex" : "none"};
+    align-items: center;
+    p {
+        font-family: 'Montserrat';
+        font-weight: 400;
+        margin-right: 10px;
+        margin-left: 20px;
+        color: white;
+    }
+    span {
+        font-family: 'Montserrat';
+        font-weight: 700;
+        font-size: 15px;
+    }
+    a {
+        text-decoration: none;
+        color: white;
+    }
+`
+
 export const Cart = styled.div`
     display: flex;
     align-items: center;
