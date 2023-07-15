@@ -1,74 +1,98 @@
-import styled from 'styled-components'
-import Header from '../../components/Header'
-import notebook from './../../../assets/notebook.png'
-import { useEffect } from 'react';
-import { useContext } from 'react';
-import PathContext from '../../context/PathContext';
-import { useNavigate } from 'react-router-dom';
+import styled from "styled-components";
+import Header from "../../components/Header";
+import notebook from "./../../../assets/notebook.png";
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import PathContext from "../../context/PathContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export default function ShoppingCart(){
+export default function ShoppingCart() {
+  const { setPath } = useContext(PathContext);
+  const [productsCart, setProdsCart] = useState([]);
+  const [subTotal, setSubTotal] = useState(null);
 
-  const { setPath } = useContext(PathContext)
+  const token = JSON.parse(sessionStorage.getItem("token"));
 
   const navigateTo = useNavigate();
 
-  setPath('cart')
+  setPath("cart");
 
-    /*
-    useEffect(() => {
-        if (!token) {
-          navigateTo('/log-in');
-        }
-      }, []);
-      */
-  
-  function checkout(){
-    navigateTo('/checkout')
+  useEffect(() => {
+    if (!token) {
+      alert("Faça login!");
+      navigateTo("/log-in");
+    } else {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const promise = axios.get(
+        `${import.meta.env.VITE_API_URL}/productsCart`,
+        config
+      );
+
+      promise.then((res) => {
+        setProdsCart(res.data.productsCart);
+        setSubTotal(res.data.subTotal);
+      });
+      promise.catch((err) => alert(err.response.data));
+    }
+  }, []);
+
+  function checkout() {
+    navigateTo("/checkout");
   }
 
-    return(
-        <>
-        <Header />
-        <PageContainer>
-          <ShoppingCartContainer>
-            <h1>Carrinho</h1>
-            <hr />
-            <Product>
-              <img src={notebook} />
+  return (
+    <>
+      <Header />
+      <PageContainer>
+        <ShoppingCartContainer>
+          <h1>Carrinho</h1>
+          <hr />
+          {productsCart.map((prod, i) => {
+            <Product key={i}>
+              <img src={prod.image} />
               <ProductInfo>
-                <p>NOME DO PRODUTO</p>
-                <p>R$10,00</p>
-                <p>DESCRIÇAO DO PRODUTO</p>
+                <p>{prod.title}</p>
+                <p>R${prod.price}</p>
+                <p>{prod.description}</p>
               </ProductInfo>
-            </Product>
-          </ShoppingCartContainer>
-          <Subtotal>
-            <h1>Subtotal: <strong>R$10,00</strong></h1>
-            <button onClick={checkout}>Finalizar pedido</button>
-          </Subtotal>
-        </PageContainer>
-        </>
-    )
+            </Product>;
+          })}
+        </ShoppingCartContainer>
+        <Subtotal>
+          <h1>
+            Subtotal: <strong>R$ {subTotal}</strong>
+          </h1>
+          <button onClick={checkout}>Finalizar pedido</button>
+        </Subtotal>
+      </PageContainer>
+    </>
+  );
 }
 
 const PageContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  font-family: 'Roboto';
-`
+  font-family: "Roboto";
+`;
 
 const ShoppingCartContainer = styled.div`
   width: 75%;
-  background: #F5F5F5;
+  background: #f5f5f5;
   padding: 20px;
   margin-top: 20px;
   h1 {
     font-size: 24px;
   }
   hr {
-    color: #F8F8F8;
+    color: #f8f8f8;
   }
-`
+`;
 
 const Product = styled.div`
   display: flex;
@@ -77,7 +101,7 @@ const Product = styled.div`
   img {
     width: 300px;
   }
-`
+`;
 
 const ProductInfo = styled.div`
   display: flex;
@@ -94,13 +118,13 @@ const ProductInfo = styled.div`
     font-size: 15px;
     color: #282828;
   }
-`
+`;
 
 const Subtotal = styled.div`
   width: 20%;
   height: 100%;
   margin-top: 20px;
-  background: #F5F5F5;
+  background: #f5f5f5;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
@@ -119,4 +143,4 @@ const Subtotal = styled.div`
     border-radius: 10px;
     height: 30px;
   }
-`
+`;

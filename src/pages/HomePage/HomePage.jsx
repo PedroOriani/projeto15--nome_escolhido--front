@@ -22,6 +22,7 @@ import {
   Valor,
   AddtoCart,
 } from "./styleHome";
+import axios from "axios";
 
 export default function HomePage() {
   const { setPath } = useContext(PathContext);
@@ -36,7 +37,7 @@ export default function HomePage() {
 
   function loadProducts() {
     const promise = axios.get(`${import.meta.env.VITE_API_URL}/products`);
-    promise.then((resposta) => (setProducts = resposta.data));
+    promise.then((resposta) => setProducts(resposta.data));
     promise.catch((erro) => alert(erro.response.data));
   }
 
