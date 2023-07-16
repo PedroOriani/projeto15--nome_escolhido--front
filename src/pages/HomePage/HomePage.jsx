@@ -4,8 +4,6 @@ import notebook from "./../../../assets/notebook.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useContext } from "react";
-import PathContext from "../../context/PathContext";
 import {
   HeaderContainer,
   MenuContainer,
@@ -25,19 +23,17 @@ import {
 import axios from "axios";
 
 export default function HomePage() {
-  const { setPath } = useContext(PathContext);
-
   const [products, setProducts] = useState([]);
 
   const token = JSON.parse(sessionStorage.getItem("token"));
 
   const navigateTo = useNavigate();
 
-  setPath("home");
-
   function loadProducts() {
     const promise = axios.get(`${import.meta.env.VITE_API_URL}/products`);
-    promise.then((resposta) => setProducts(resposta.data));
+    promise.then((resposta) => {
+      setProducts(resposta.data);
+    });
     promise.catch((erro) => alert(erro.response.data));
   }
 
@@ -55,6 +51,8 @@ export default function HomePage() {
         price: price,
       };
 
+      console.log(token);
+
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -67,7 +65,10 @@ export default function HomePage() {
         config
       );
 
-      promise.then((res) => console.log(res.data));
+      promise.then((res) => {
+        console.log(res.data);
+        alert(res.data);
+      });
       promise.catch((erro) => alert(erro.response.data));
     }
   }
@@ -78,7 +79,7 @@ export default function HomePage() {
       <ContainerGeral>
         <SideMenu></SideMenu>
         <ContainerProd>
-          {products.map((prod, i) => {
+          {products.map((prod, i) => (
             <Product key={i}>
               <img src={prod.image} alt="" />
               <h1>{prod.title}</h1>
@@ -91,8 +92,8 @@ export default function HomePage() {
               >
                 <h3>Adicionar ao Carrinho</h3>
               </AddtoCart>
-            </Product>;
-          })}
+            </Product>
+          ))}
         </ContainerProd>
       </ContainerGeral>
     </>

@@ -53,7 +53,7 @@ export default function ShoppingCart() {
         <ShoppingCartContainer>
           <h1>Carrinho</h1>
           <hr />
-          {productsCart.map((prod, i) => {
+          {productsCart.map((prod, i) => (
             <Product key={i}>
               <img src={prod.image} />
               <ProductInfo>
@@ -61,8 +61,8 @@ export default function ShoppingCart() {
                 <p>R${prod.price}</p>
                 <p>{prod.description}</p>
               </ProductInfo>
-            </Product>;
-          })}
+            </Product>
+          ))}
         </ShoppingCartContainer>
         <Subtotal>
           <h1>

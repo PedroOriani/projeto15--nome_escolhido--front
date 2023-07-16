@@ -10,7 +10,7 @@ import AdminPage from "./pages/HomePage/AdminPage";
 import { UserLogged } from "./context/UserLogged";
 
 function App() {
-  const [path, setPath] = useState("");
+  const [path, setPath] = useState("home");
   const [logged, setLogged] = useState(false);
 
   return (
