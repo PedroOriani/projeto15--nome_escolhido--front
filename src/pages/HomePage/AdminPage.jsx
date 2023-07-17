@@ -1,16 +1,50 @@
 import axios from 'axios';
 import notebook from './../../../assets/notebook.png'
-import { HeaderContainer, MenuContainer, Acess, SCLogOutIcon, SCTitle, Cart, CartIcon, ContainerGeral, ContainerProd, SCAddProduct, SCBiPlusCircle, Product, Valor, AddtoCart } from './styleHome'
+import { HeaderContainer, MenuContainer, Acess, SCLogOutIcon, SCTitle, Cart, CartIcon, ContainerGeral, ContainerProd, SCAddProduct, SCBiPlusCircle, Product, Valor, AddtoCart, SCFooterAddProduct, SCAddInput, SCFormAdd, } from './styleHome'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 
 export default function Admin() {
 
+    const [image, setImage] = useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState('');
 
     const navigateTo = useNavigate();
 
-    function addProduct() {
+    const token = JSON.parse(sessionStorage.getItem("token"));
 
+    function addProduct(e) {
+        e.preventDefault();
+        const newProd = {
+            image: image,
+            title: title,
+            description: description,
+            price: price,
+        };
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const promise = axios.post(
+            `${import.meta.env.VITE_API_URL}/products`,
+            newProd,
+            config
+        );
+
+        promise.then((res) => {
+            console.log(res.data);
+            setImage('');
+            setTitle('');
+            setDescription('');
+            setPrice('');   
+        });
+        promise.catch((erro) => alert(erro.response.data));
     }
 
     function efetuarLogout() {
@@ -45,9 +79,45 @@ export default function Admin() {
             <ContainerGeral>
 
                 <ContainerProd>
-                    <SCAddProduct onClick={addProduct} >
-                        <SCBiPlusCircle />
-                        <p>Adicionar Produto</p>
+                    <SCAddProduct>
+                        <SCFormAdd onSubmit={addProduct}>
+                            <SCAddInput
+                                name="Image"
+                                placeholder="Image URL"
+                                type="text"
+                                value={image}
+                                onChange={(e) => setImage(e.target.value)}
+                                required
+                            />
+                            <SCAddInput
+                                name="title"
+                                placeholder="Title"
+                                type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                required
+                            />
+                            <SCAddInput
+                                name="description"
+                                placeholder="Description"
+                                type="text"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                required
+                            />
+                            <SCAddInput
+                                name="price"
+                                placeholder="Price"
+                                type="price"
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                                required
+                            />
+                            <SCFooterAddProduct>
+                                <SCBiPlusCircle />
+                                <p>Adicionar Produto</p>
+                            </SCFooterAddProduct>
+                        </SCFormAdd>
                     </SCAddProduct>
                     <Product>
                         <img src={notebook} alt='' />

@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { BiChevronDown } from "react-icons/bi";
-import axios from 'axios';
 
 export default function SideMenu( { products, setProducts }) {
-  const [category, setCategory] = useState('');
-  const [filter, setFilter] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   
   function getProductsByCategory(categoryType) {
@@ -27,9 +24,10 @@ export default function SideMenu( { products, setProducts }) {
         arr.sort((a,b) => b.price - a.price);
         break
       case ('vendas'):
-        arr.sort((a, b) =>  a.sales - b.sales);
+        arr.sort((a, b) =>  b.sales - a.sales);
         break
       default:
+        console.log('erro');
     }
     setProducts(arr);
   }

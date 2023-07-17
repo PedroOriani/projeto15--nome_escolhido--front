@@ -5,6 +5,11 @@ import { BiPlusCircle } from "react-icons/bi";
 export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  z-index: 1000;
 `;
 
 export const MenuContainer = styled.div`
@@ -88,7 +93,7 @@ export const SCTitle = styled.p`
 
   color: #ffffff;
 
-  margin-right: 100px;
+  margin-right: 400px;
 
   cursor: pointer;
 `;
@@ -122,12 +127,13 @@ export const SCAddProduct = styled.div`
   display: "flex";
   flex-direction: column;
   align-items: center;
-  width: 200px;
+  width: 100%;
   height: 300px;
   border: 1px solid #ffffff;
-  padding: 5px;
+  padding: 25px;
   border-radius: 14px;
   background-color: #255566;
+  margin-bottom: 10px;
   p {
     margin-top: 5px;
     font-size: 25px;
@@ -138,6 +144,8 @@ export const SCAddProduct = styled.div`
 
 export const SCBiPlusCircle = styled(BiPlusCircle)`
   color: #ffffff;
+
+  margin-right: 15px;
 
   width: 30px;
   height: 30px;
@@ -152,19 +160,19 @@ export const ContainerProd = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 30px;
-  width: 1000px;
+  width: 1300px;
 `;
 export const Product = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   width: 200px;
   height: 300px;
-  margin: 15px;
+  margin: 20px;
 
   padding: 10px;
-
   img {
-    width: 180px;
     height: 100px;
   }
   h1 {
@@ -207,3 +215,36 @@ export const AddtoCart = styled.div`
     color: white;
   }
 `;
+
+export const SCFooterAddProduct = styled.button`
+  display: flex;
+  justify-content: right;
+  align-items: center;
+
+  border: none;
+  background: none;
+
+  cursor: pointer;
+`
+
+export const SCAddInput = styled.input`
+  width: 100%;
+  height: 45px;
+
+  margin-bottom: 10px;
+
+  background-color: none;
+
+  border-radius: 5px;
+
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 600;
+
+  padding-left: 10px;
+`
+export const SCFormAdd = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
