@@ -87,13 +87,13 @@ export const Cart = styled.div`
 `;
 
 export const SCTitle = styled.p`
-  font-size: 50px;
+  font-size: 55px;
   font-weight: 600;
   font-family: "Montserrat";
 
   color: #ffffff;
 
-  margin-right: 400px;
+  margin-right: 200px;
 
   cursor: pointer;
 `;
