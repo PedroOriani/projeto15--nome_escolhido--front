@@ -1,37 +1,38 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { BiChevronDown } from "react-icons/bi";
+import axios from 'axios';
 
-export default function SideMenu() {
+export default function SideMenu( { products, setProducts }) {
   const [category, setCategory] = useState('');
   const [filter, setFilter] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-
   
-  function getProductsByCategory(productCategory) {
-    setCategory(productCategory);
-    /*
-    const authentication = { headers: { Authorization: `Bearer ${token}`, }, };
-    const req = axios.get(`${import.meta.env.VITE_API_URL}/home`, category, authentication);
-    req.then(res => {
-      
-    });
-    req.catch(err => alert(err.response.data));
-    */
+  function getProductsByCategory(categoryType) {
+    let arr = [];
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].type == categoryType)
+        arr.push(products[i]);
+    }
+    setProducts(arr);
   } 
 
   function filterProducts(filterType) {
-    setFilter(filterType);
-    /*
-    const authentication = { headers: { Authorization: `Bearer ${token}`, }, };
-    const req = axios.get(`${import.meta.env.VITE_API_URL}/home`, filter, authentication);
-    req.then(res => {
-
-    });
-    req.catch(err => alert(err.response.data));
-    */
+    let arr = [...products];
+    switch (filterType) {
+      case ('maior'):
+        arr.sort((a,b) => a.price - b.price);
+        break
+      case ('menor'):
+        arr.sort((a,b) => b.price - a.price);
+        break
+      case ('vendas'):
+        arr.sort((a, b) =>  a.sales - b.sales);
+        break
+      default:
+    }
+    setProducts(arr);
   }
-  
  
   return (
     <>
@@ -47,8 +48,8 @@ export default function SideMenu() {
         <button onClick={() => setIsOpen(!isOpen)}>Ordenar por <BiChevronDown/> </button>
         {isOpen &&
         <FilterProducts>
-          <li onClick={() => filterProducts("maior")}>Preço: maior - menor</li>
-          <li onClick={() => filterProducts("menor")}>Preço: menor - maior</li>
+          <li onClick={() => filterProducts("menor")}>Preço: maior - menor</li>
+          <li onClick={() => filterProducts("maior")}>Preço: menor - maior</li>
           <li onClick={() => filterProducts("vendas")}>Mais vendidos</li>
         </FilterProducts>
         }
@@ -122,6 +123,7 @@ const FilterProducts = styled.div`
   padding: 5px;
   font-family: 'Roboto';
   li {
+    cursor: pointer;
     font-size: 16px;
     list-style: none;
   }

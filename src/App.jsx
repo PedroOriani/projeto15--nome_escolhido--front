@@ -12,6 +12,7 @@ import { UserLogged } from "./context/UserLogged";
 function App() {
   const [path, setPath] = useState("home");
   const [logged, setLogged] = useState(false);
+  const [products, setProducts] = useState([]);
 
   return (
     <PathContext.Provider value={{ path, setPath }}>
@@ -20,7 +21,7 @@ function App() {
           <Routes>
             <Route path="/log-in" element={<SignIn />} />
             <Route path="/register" element={<SignUp />} />
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage products={products} setProducts={setProducts}/>} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="cart" element={<ShoppingCart />} />
             <Route path="checkout" element={<Checkout />} />

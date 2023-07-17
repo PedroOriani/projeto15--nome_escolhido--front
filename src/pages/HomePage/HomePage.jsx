@@ -1,6 +1,5 @@
 import Header from "../../components/Header";
 import SideMenu from "../../components/SideMenu";
-import notebook from "./../../../assets/notebook.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -22,8 +21,7 @@ import {
 } from "./styleHome";
 import axios from "axios";
 
-export default function HomePage() {
-  const [products, setProducts] = useState([]);
+export default function HomePage({ products, setProducts }) {
 
   const token = JSON.parse(sessionStorage.getItem("token"));
 
@@ -37,7 +35,7 @@ export default function HomePage() {
     promise.catch((erro) => alert(erro.response.data));
   }
 
-  useEffect(loadProducts, []);
+  //useEffect(loadProducts, []);
 
   function addCart(image, title, description, price) {
     if (!token) {
@@ -77,7 +75,7 @@ export default function HomePage() {
     <>
       <Header />
       <ContainerGeral>
-        <SideMenu></SideMenu>
+        <SideMenu products={products} setProducts={setProducts} />
         <ContainerProd>
           {products.map((prod, i) => (
             <Product key={i}>
