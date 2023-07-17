@@ -10,7 +10,7 @@ import axios from "axios";
 export default function ShoppingCart() {
   const { setPath } = useContext(PathContext);
   const [productsCart, setProdsCart] = useState([]);
-  const [subTotal, setSubTotal] = useState(null);
+  // const [subTotal, setSubTotal] = useState(null);
 
   const token = JSON.parse(sessionStorage.getItem("token"));
 
@@ -25,8 +25,8 @@ export default function ShoppingCart() {
     } else {
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       };
 
       const promise = axios.get(
@@ -35,8 +35,7 @@ export default function ShoppingCart() {
       );
 
       promise.then((res) => {
-        setProdsCart(res.data.productsCart);
-        setSubTotal(res.data.subTotal);
+        setProdsCart(res.data.productsCart);       
       });
       promise.catch((err) => alert(err.response.data));
     }
@@ -45,7 +44,15 @@ export default function ShoppingCart() {
   function checkout() {
     navigateTo("/checkout");
   }
+  console.log(productsCart)
+  
 
+  let subTotal = 0;
+
+    productsCart.map((p) => {
+       subTotal = (subTotal + parseFloat(p.price))
+    })
+    console.log(subTotal)  
   return (
     <>
       <Header />
@@ -66,7 +73,7 @@ export default function ShoppingCart() {
         </ShoppingCartContainer>
         <Subtotal>
           <h1>
-            Subtotal: <strong>R$ {subTotal}</strong>
+            Subtotal: <strong>R$ {subTotal.toFixed(2)}</strong>
           </h1>
           <button onClick={checkout}>Finalizar pedido</button>
         </Subtotal>
@@ -99,7 +106,7 @@ const Product = styled.div`
   gap: 20px;
   margin-top: 20px;
   img {
-    width: 300px;
+    width: 60px;
   }
 `;
 

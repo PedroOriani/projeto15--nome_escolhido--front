@@ -27,7 +27,7 @@ import cadastros from "../../mocks/cadastros";
 
 export default function HomePage() {
 
-  let prodOrdem = cadastros.sort((a, b) => a-b)
+  let prodOrdem = cadastros.sort((a, b) => a - b)
 
   const [products, setProducts] = useState(prodOrdem);
   const { setPath } = useContext(PathContext);
@@ -38,42 +38,29 @@ export default function HomePage() {
 
   const navigateTo = useNavigate();
 
-/*function loadProducts() {
-    const promise = axios.get(`${import.meta.env.VITE_API_URL}/products`);
-    promise.then((resposta) => {
-      setProducts(resposta.data);
-    });
-    promise.catch((erro) => alert(erro.response.data));
-  }
+  /*function loadProducts() {
+      const promise = axios.get(`${import.meta.env.VITE_API_URL}/products`);
+      promise.then((resposta) => {
+        setProducts(resposta.data);
+      });
+      promise.catch((erro) => alert(erro.response.data));
+    }
+  
+    useEffect(loadProducts, []);
+  */
 
-  useEffect(loadProducts, []);
-*/
-
-  function addCart(image, title, description, price) {
+  function addCart(prod) {
+    console.log(prod)
     if (!token) {
       alert("Faça login!");
       navigateTo("/log-in");
     } else {
-      const newProdCart = {
-        image: image,
-        title: title,
-        description: description,
-        price: price,
-      };
+      const newProdCart = prod;
 
-      console.log(token);
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
-      const promise = axios.post(
-        `${import.meta.env.VITE_API_URL}/addToCart`,
-        newProdCart,
-        config
-      );
+      const promise = axios.post(`${import.meta.env.VITE_API_URL}/addToCart`, newProdCart, {
+        headers:
+          { Authorization: `Bearer ${token}` }
+      });
 
       promise.then((res) => {
         console.log(res.data);
@@ -96,9 +83,7 @@ export default function HomePage() {
               <p>{prod.description}</p>
               <Valor>R$ {prod.price}</Valor>
               <AddtoCart
-                onClick={() =>
-                  addCart(prod.image, prod.title, prod.description, prod.price)
-                }
+                onClick={() => addCart(prod)}
               >
                 <h3>Adicionar ao Carrinho</h3>
               </AddtoCart>

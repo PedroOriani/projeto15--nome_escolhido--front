@@ -2,7 +2,7 @@ const cadastros = [
     {
         "title": "Inspiron 15 3000",
         "description": "11ª geração Core i5 8GB RAM SSD 1TB",
-        "price": "2.698,00",
+        "price": "2698,00",
         "type": "laptop",
         "sales": 11,
         "image": "https://m.media-amazon.com/images/I/61916dNVFYL._AC_UL320_.jpg"
@@ -10,7 +10,7 @@ const cadastros = [
       {
         "title": "Apple iPhone 13",
         "description": "64GB Lilás",
-        "price": "4.500,00",
+        "price": "4500,00",
         "type": "cellphone",
         "sales": 21,
         "image": "https://m.media-amazon.com/images/I/41Zbbl4P+LL._AC_SL1000_.jpg"
@@ -50,7 +50,7 @@ const cadastros = [
       {
         "title": "Apple iPhone 14",
         "description": "128GB Roxo",
-        "price": "5.199,99",
+        "price": "5199,99",
         "type": "cellphone",
         "sales": 29,
         "image": "https://m.media-amazon.com/images/I/41Z8j2+aznL._AC_SL1000_.jpg"
@@ -66,7 +66,7 @@ const cadastros = [
       {
         "title": "Xiaomi Redmi Pad",
         "description": "4GB RAM Prateado",
-        "price": "1.500,00",
+        "price": "1500,00",
         "type": "tablet",
         "sales": 2,
         "image": "https://m.media-amazon.com/images/I/31Bs1XBrnOL._AC_SY606_.jpg"
@@ -74,7 +74,7 @@ const cadastros = [
       {
         "title": "Sennheiser HD 650",
         "description": "Fone de ouvido dinâmico Open back",
-        "price": "3.500,00",
+        "price": "3500,00",
         "type": "earphone",
         "sales": 1,
         "image": "https://m.media-amazon.com/images/I/819EPaGSO0L._AC_SL1500_.jpg"
@@ -82,7 +82,7 @@ const cadastros = [
       {
         "title": "Motorola Moto E13",
         "description": "32GB 4GB RAM Grafite",
-        "price": "649.99",
+        "price": "649,99",
         "type": "cellphone",
         "sales": 19,
         "image": "https://m.media-amazon.com/images/I/512QeoN3xML._AC_SL1200_.jpg"
@@ -98,7 +98,7 @@ const cadastros = [
       {
         "title": "Caixa de som Edifier",
         "description": "Monitor de som Bluetooth 5.0",
-        "price": "1.349,00",
+        "price": "1349,00",
         "type": "speaker",
         "sales": 1,
         "image": "https://m.media-amazon.com/images/I/61IaS9risyL._AC_SL1280_.jpg"
@@ -114,7 +114,7 @@ const cadastros = [
       {
         "title": "Acer Nitro 5",
         "description": "11ª geração Core i5 8GB Ram GTX 1650",
-        "price": "4.700,00",
+        "price": "4700,00",
         "type": "laptop",
         "sales": 4,
         "image": "https://m.media-amazon.com/images/I/61wxOWQ74kL._AC_SL1000_.jpg"
@@ -122,7 +122,7 @@ const cadastros = [
       {
         "title": "Samsung Book",
         "description": "11ª geração Core i7 8GB Ram SSD 250GB",
-        "price": "2.430,00",
+        "price": "2430,00",
         "type": "laptop",
         "sales": 8,
         "image": "https://m.media-amazon.com/images/I/51vLIXjlTvL._AC_SL1000_.jpg"
@@ -138,7 +138,7 @@ const cadastros = [
       {
         "title": "Xiaomi Redmi Note 12",
         "description": "128GB 6GB RAM Preto",
-        "price": "1.349,00",
+        "price": "1349,00",
         "type": "cellphone",
         "sales": 15,
         "image": "https://m.media-amazon.com/images/I/51fAmmSJcUL._AC_SL1000_.jpg"
@@ -154,7 +154,7 @@ const cadastros = [
       {
         "title": "Apple Macbook Air 2020",
         "description": "Processador M1 8GB RAM 256GB",
-        "price": "7.999,00",
+        "price": "7999,00",
         "type": "laptop",
         "sales": 3,
         "image": "https://m.media-amazon.com/images/I/41-RhQeujUL._AC_SL1000_.jpg"
