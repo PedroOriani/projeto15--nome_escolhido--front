@@ -32,7 +32,8 @@ export const Subtotal = styled.div`
     align-items: center;
   }
   img {
-    width: 120px;
+    width: 70px;
+    height: 70px;
   }
 `
 export const SubtotalInformation = styled.div`
@@ -86,14 +87,13 @@ export const UserInfo = styled.div`
     margin-top: 15px;
     font-style: italic;
   }
-  p:nth-child(6) {
-    font-size: 18px;
-    font-weight: 700;
-    color: red;
-  }
+ 
   div {
     display: flex;
-    justify-content: space-around;
+    
+  }
+  form {
+    display: flex;
   }
 `
 export const AddAdress = styled.button`
@@ -108,7 +108,7 @@ export const AddAdress = styled.button`
 
     /* border-radius: 20px; */
 
-    h2 {
+    button {
         font-family: 'Roboto';
         font-weight: 400;
         font-size: 15px;
@@ -133,4 +133,15 @@ export const AddPay = styled.button`
         font-size: 15px;
         color: white;
     }
+`
+
+export const Pay = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  button {
+    width: 140px;
+  }
+  
+
 `
