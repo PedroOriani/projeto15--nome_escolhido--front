@@ -41,18 +41,13 @@ export default function ShoppingCart() {
     }
   }, []);
 
-  function checkout() {
-    navigateTo("/checkout");
-  }
-  console.log(productsCart)
-  
 
   let subTotal = 0;
 
     productsCart.map((p) => {
        subTotal = (subTotal + parseFloat(p.price))
     })
-    console.log(subTotal)  
+    
   return (
     <>
       <Header />
@@ -75,7 +70,7 @@ export default function ShoppingCart() {
           <h1>
             Subtotal: <strong>R$ {subTotal.toFixed(2)}</strong>
           </h1>
-          <button onClick={checkout}>Finalizar pedido</button>
+          <button onClick={() => navigateTo("/checkout")}>Finalizar pedido</button>
         </Subtotal>
       </PageContainer>
     </>
