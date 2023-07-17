@@ -35,7 +35,7 @@ export default function HomePage({ products, setProducts }) {
   const navigateTo = useNavigate();
 
   useEffect(() => {
-    let prodOrdem = cadastros.sort((a, b) => a - b);
+    let prodOrdem = cadastros.sort((a, b) => a.title - b.title);
     setProducts(prodOrdem);
   }, []);
 

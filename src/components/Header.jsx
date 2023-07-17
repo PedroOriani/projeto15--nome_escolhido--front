@@ -57,12 +57,12 @@ export default function Header() {
             <HeaderContainer>
                 <MenuContainer>
                     <MenuIcon />
-                    <Acess logged={logged}>
+                    <Acess logged={user}>
 
                         <p>Faça <Link to={'/log-in'}><span>LOGIN </span></Link>ou <br />
                             crie seu <Link to={'/register'}><span>CADASTRO</span></Link></p>
                     </Acess>
-                    <AcessUser logged={logged}>
+                    <AcessUser logged={user}>
                         <SCLogOutIcon onClick={efetuarLogout} />
                         <p>Olá, <span>{userName}</span></p>
                     </AcessUser>

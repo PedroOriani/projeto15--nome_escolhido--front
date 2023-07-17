@@ -1,18 +1,38 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { BiChevronDown } from "react-icons/bi";
+import cadastros from '../mocks/cadastros';
 
 export default function SideMenu( { products, setProducts }) {
   const [isOpen, setIsOpen] = useState(false);
-  
+  const [category, setCategory] = useState('');
+
   function getProductsByCategory(categoryType) {
-    let arr = [];
-    for (let i = 0; i < products.length; i++) {
-      if (products[i].type == categoryType)
-        arr.push(products[i]);
+
+    setCategory(categoryType)
+
+    if (category === '') {
+      let arr = [];
+      for (let i = 0; i < cadastros.length; i++) {
+        if (cadastros[i].type == categoryType)
+          arr.push(cadastros[i]);
+      }
+      setProducts(arr);
+    } else if (category === categoryType) {
+      setProducts(cadastros);
+      setCategory('')
+    } else {
+      setCategory('')
+      let arr2 = [];
+      for (let i = 0; i < cadastros.length; i++) {
+        if (cadastros[i].type == categoryType)
+          arr2.push(cadastros[i]);
+      }
+      setProducts(arr2);
     }
-    setProducts(arr);
-  } 
+  }
+
+  console.log(products)
 
   function filterProducts(filterType) {
     let arr = [...products];
