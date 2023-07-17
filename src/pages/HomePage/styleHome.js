@@ -5,6 +5,11 @@ import { BiPlusCircle } from "react-icons/bi";
 export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  z-index: 1000;
 `;
 
 export const MenuContainer = styled.div`
@@ -155,19 +160,19 @@ export const ContainerProd = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 30px;
-  width: 1000px;
+  width: 1300px;
 `;
 export const Product = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   width: 200px;
   height: 300px;
-  margin: 15px;
+  margin: 20px;
 
   padding: 10px;
-
   img {
-    width: 180px;
     height: 100px;
   }
   h1 {

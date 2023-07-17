@@ -16,7 +16,8 @@ export default function Admin() {
 
     const token = JSON.parse(sessionStorage.getItem("token"));
 
-    function addProduct() {
+    function addProduct(e) {
+        e.preventDefault();
         const newProd = {
             image: image,
             title: title,
@@ -38,6 +39,10 @@ export default function Admin() {
 
         promise.then((res) => {
             console.log(res.data);
+            setImage('');
+            setTitle('');
+            setDescription('');
+            setPrice('');   
         });
         promise.catch((erro) => alert(erro.response.data));
     }

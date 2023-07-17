@@ -23,9 +23,13 @@ import {
 import axios from "axios";
 import PathContext from "../../context/PathContext";
 import { useContext } from "react";
+import cadastros from "../../mocks/cadastros";
 
 export default function HomePage() {
-  const [products, setProducts] = useState([]);
+
+  let prodOrdem = cadastros.sort((a, b) => a-b)
+
+  const [products, setProducts] = useState(prodOrdem);
   const { setPath } = useContext(PathContext);
 
   setPath("home");
@@ -34,7 +38,7 @@ export default function HomePage() {
 
   const navigateTo = useNavigate();
 
-  function loadProducts() {
+/*function loadProducts() {
     const promise = axios.get(`${import.meta.env.VITE_API_URL}/products`);
     promise.then((resposta) => {
       setProducts(resposta.data);
@@ -43,6 +47,7 @@ export default function HomePage() {
   }
 
   useEffect(loadProducts, []);
+*/
 
   function addCart(image, title, description, price) {
     if (!token) {
@@ -86,7 +91,7 @@ export default function HomePage() {
         <ContainerProd>
           {products.map((prod, i) => (
             <Product key={i}>
-              <img src={prod.image} alt="" />
+              <img src={prod.image} alt={prod.title} />
               <h1>{prod.title}</h1>
               <p>{prod.description}</p>
               <Valor>R$ {prod.price}</Valor>
