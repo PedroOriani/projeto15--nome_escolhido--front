@@ -22,7 +22,6 @@ export default function SideMenu( { products, setProducts }) {
       setProducts(cadastros);
       setCategory('')
     } else {
-      setCategory('')
       let arr2 = [];
       for (let i = 0; i < cadastros.length; i++) {
         if (cadastros[i].type == categoryType)
