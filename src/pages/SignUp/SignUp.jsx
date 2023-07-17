@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Header from "../../components/Header";
 import PathContext from "../../context/PathContext";
+import { useContext } from "react";
 
 export default function SignUp() {
   const { setPath } = useContext(PathContext);
