@@ -55,11 +55,11 @@ export default function SideMenu( { products, setProducts }) {
     <>
       <SideMenuLeft>
         <div>Filtrar por Categorias: </div>
-        <button onClick={() => getProductsByCategory("cellphone")}>Celulares</button>
-        <button onClick={() => getProductsByCategory("laptop")}>Notebooks</button>
-        <button onClick={() => getProductsByCategory("tablet")}>Tablets</button>
-        <button onClick={() => getProductsByCategory("speaker")}>Caixas de som</button>
-        <button onClick={() => getProductsByCategory("earphone")}>Fones de ouvido</button>
+        <SCButtonCel onClick={() => getProductsByCategory("cellphone")} select={category === "cellphone" }>Celulares</SCButtonCel>
+        <SCButtonLap onClick={() => getProductsByCategory("laptop")} select={category === "laptop" }>Notebooks</SCButtonLap>
+        <SCButtonTab onClick={() => getProductsByCategory("tablet")} select={category === "tablet" }>Tablets</SCButtonTab>
+        <SCButtonSpk onClick={() => getProductsByCategory("speaker")} select={category === "speaker" }>Caixas de som</SCButtonSpk>
+        <SCButtonEar onClick={() => getProductsByCategory("earphone")} select={category === "earphone" }>Fones de ouvido</SCButtonEar>
       </SideMenuLeft>
       <SideMenuRight>
         <button onClick={() => setIsOpen(!isOpen)}>Ordenar por <BiChevronDown/> </button>
@@ -144,4 +144,50 @@ const FilterProducts = styled.div`
     font-size: 16px;
     list-style: none;
   }
+`
+
+const SCButtonCel = styled.button`
+  font-family: 'Roboto';
+  cursor: pointer;
+  height: 40px;
+  width: 100%;
+  border: none;
+  color: ${props => props.select ? 'green' : 'none'};
+  font-weight: ${props => props.select ? 'bold' : 'none'};
+`
+const SCButtonLap = styled.button`
+  font-family: 'Roboto';
+  cursor: pointer;
+  height: 40px;
+  width: 100%;
+  border: none;
+  color: ${props => props.select ? 'green' : 'none'};
+  font-weight: ${props => props.select ? 'bold' : 'none'};
+`
+const SCButtonTab = styled.button`
+  font-family: 'Roboto';
+  cursor: pointer;
+  height: 40px;
+  width: 100%;
+  border: none;
+  color: ${props => props.select ? 'green' : 'none'};
+  font-weight: ${props => props.select ? 'bold' : 'none'};
+`
+const SCButtonSpk = styled.button`
+  font-family: 'Roboto';
+  cursor: pointer;
+  height: 40px;
+  width: 100%;
+  border: none;
+  color: ${props => props.select ? 'green' : 'none'};
+  font-weight: ${props => props.select ? 'bold' : 'none'};
+`
+const SCButtonEar = styled.button`
+  font-family: 'Roboto';
+  cursor: pointer;
+  height: 40px;
+  width: 100%;
+  border: none;
+  color: ${props => props.select ? 'green' : 'none'};
+  font-weight: ${props => props.select ? 'bold' : 'none'};
 `

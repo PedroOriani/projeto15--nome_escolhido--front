@@ -65,7 +65,7 @@ export default function HomePage({ products, setProducts }) {
 
       promise.then((res) => {
         console.log(res.data);
-        alert(res.data);
+        alert("Produto adicionado ao carrinho");
       });
       promise.catch((erro) => alert(erro.response.data));
     }

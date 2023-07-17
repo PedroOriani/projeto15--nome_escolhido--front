@@ -159,7 +159,8 @@ export const ContainerGeral = styled.div`
 export const ContainerProd = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding: 30px;
+  justify-content: space-around;
+  padding: 30px 50px 0px 70px;
   width: 1100px;
 `;
 export const Product = styled.div`
