@@ -4,13 +4,17 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "../../components/Header";
 import { UserLogged } from "../../context/UserLogged";
+import PathContext from "../../context/PathContext";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setLogged } = useContext(UserLogged);
+  const { setPath } = useContext(PathContext);
 
   const navigateTo = useNavigate();
+
+  setPath("home");
 
   function loginUser(e) {
     e.preventDefault();

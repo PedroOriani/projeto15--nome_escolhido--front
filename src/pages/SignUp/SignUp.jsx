@@ -3,8 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Header from "../../components/Header";
+import PathContext from "../../context/PathContext";
 
 export default function SignUp() {
+  const { setPath } = useContext(PathContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,12 +14,14 @@ export default function SignUp() {
 
   const navigateTo = useNavigate();
 
+  setPath("home");
+
   function registerUser(e) {
     e.preventDefault();
     const body = {
       name,
       email,
-      password,
+      password  
     };
 
     const promise = axios.post(`${import.meta.env.VITE_API_URL}/sign-up`, body);

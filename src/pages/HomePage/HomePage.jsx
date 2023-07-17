@@ -21,9 +21,14 @@ import {
   AddtoCart,
 } from "./styleHome";
 import axios from "axios";
+import PathContext from "../../context/PathContext";
+import { useContext } from "react";
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
+  const { setPath } = useContext(PathContext);
+
+  setPath("home");
 
   const token = JSON.parse(sessionStorage.getItem("token"));
 

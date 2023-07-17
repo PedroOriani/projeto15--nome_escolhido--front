@@ -13,12 +13,10 @@ export default function Header() {
 
     let userName = '';
 
-    const token = JSON.parse(sessionStorage.getItem("token"));
     const user = JSON.parse(sessionStorage.getItem("user"));
     if (user) {
         userName = user.name;
     }
-
 
     //TESTANDO OS EMAILS JA QUE NAO CONSEGUIMOS FAZER O USER.EMAIL AINDA
     //const email = user.email
