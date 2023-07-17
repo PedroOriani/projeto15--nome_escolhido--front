@@ -160,7 +160,7 @@ export const ContainerProd = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 30px;
-  width: 1300px;
+  width: 1100px;
 `;
 export const Product = styled.div`
   display: flex;
