@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
-import notebook from "./../../../assets/notebook.png";
+import { BiTrash } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import PathContext from "../../context/PathContext";
@@ -18,15 +18,15 @@ export default function ShoppingCart() {
 
   setPath("cart");
 
-  useEffect(() => {
+  function loadProductsCart() {
     if (!token) {
       alert("Faça login!");
       navigateTo("/log-in");
     } else {
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       };
 
       const promise = axios.get(
@@ -35,19 +35,47 @@ export default function ShoppingCart() {
       );
 
       promise.then((res) => {
-        setProdsCart(res.data.productsCart);       
+        setProdsCart(res.data.productsCart);
       });
       promise.catch((err) => alert(err.response.data));
     }
-  }, []);
+  }
 
+  useEffect(loadProductsCart, []);
+
+  function deleteProductCart(id) {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const deleteId = {
+      id: id,
+    };
+
+    const promise = axios.delete(
+      `${import.meta.env.VITE_API_URL}/productsCart`,
+      deleteId,
+      config
+    );
+    promise.then((res) => {
+      console.log(res.data);
+      alert("Produto deletado do carrinho!");
+      loadProductsCart();
+    });
+    promise.catch((err) => {
+      console.log(err.response.data);
+      alert(err.response.data);
+    });
+  }
 
   let subTotal = 0;
 
-    productsCart.map((p) => {
-       subTotal = (subTotal + parseFloat(p.price))
-    })
-    
+  productsCart.map((p) => {
+    subTotal = subTotal + parseFloat(p.price);
+  });
+
   return (
     <>
       <Header />
@@ -63,6 +91,10 @@ export default function ShoppingCart() {
                 <p>R${prod.price}</p>
                 <p>{prod.description}</p>
               </ProductInfo>
+              <BiTrash
+                color="red"
+                onClick={() => deleteProductCart(prod._id)}
+              ></BiTrash>
             </Product>
           ))}
         </ShoppingCartContainer>
@@ -70,7 +102,9 @@ export default function ShoppingCart() {
           <h1>
             Subtotal: <strong>R$ {subTotal.toFixed(2)}</strong>
           </h1>
-          <button onClick={() => navigateTo("/checkout")}>Finalizar pedido</button>
+          <button onClick={() => navigateTo("/checkout")}>
+            Finalizar pedido
+          </button>
         </Subtotal>
       </PageContainer>
     </>
